@@ -10,15 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_25_141220) do
+ActiveRecord::Schema.define(version: 2021_07_23_155759) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "parties", force: :cascade do |t|
     t.string "name"
     t.datetime "date"
-    t.string "category"
-    t.string "supplies"
     t.float "budget"
     t.boolean "private"
+    t.integer "category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "parties_supplies", id: false, force: :cascade do |t|
+    t.integer "party_id", null: false
+    t.integer "supply_id", null: false
+    t.index ["party_id", "supply_id"], name: "index_parties_supplies_on_party_id_and_supply_id"
+    t.index ["supply_id", "party_id"], name: "index_parties_supplies_on_supply_id_and_party_id"
+  end
+
+  create_table "supplies", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

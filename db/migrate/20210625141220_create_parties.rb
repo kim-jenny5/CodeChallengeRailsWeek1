@@ -3,10 +3,9 @@ class CreateParties < ActiveRecord::Migration[6.1]
     create_table :parties do |t|
       t.string :name
       t.datetime :date
-      t.string :category
-      t.string :supplies
       t.float :budget
       t.boolean :private
+      t.integer :category_id
 
       t.timestamps
     end
