@@ -40,6 +40,7 @@ Create a Supply model - each supply will have a name attribute. A party can have
 Turn the Party new form into a nested form so that you can choose from an existing category or create a new one when you create a party.
 Add fields for supplies so that you can create new supplies when you create a party.
 Display the associations on the Party show page.
+
 BONUS IF WE HAVE TIME:
 use a different layout for your category model
 use a different layout for a category’s show page

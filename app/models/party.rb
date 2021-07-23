@@ -7,7 +7,8 @@ class Party < ApplicationRecord
     has_many :supplies, through: :party_supplies
     belongs_to :category
 
-    accepts_nested_attributes_for :category
+    accepts_nested_attributes_for :category, reject_if: proc { |attribute| attribute["name"].blank? }
+    accepts_nested_attributes_for :supplies
 
     def self.parties 
         self.order("name DESC") 

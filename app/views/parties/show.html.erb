@@ -1,6 +1,10 @@
 <%= @party.name %> <br>
 <%= @party.date %><br>
-<%= @party.category.name %><br>
-<%= @party.budget %><br>
+<%= @party.category.name %><br><br>
+Budget: $<%= @party.budget %><br>
+<p>Supplies:</p>
+<% @party.supplies.each do |supply| %>
+    <%= supply.name %>
+<% end %>
 <%= @party.private %>
 

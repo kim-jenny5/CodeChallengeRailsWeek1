@@ -28,11 +28,11 @@ ActiveRecord::Schema.define(version: 2021_07_23_155759) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "parties_supplies", id: false, force: :cascade do |t|
+  create_table "party_supplies", id: false, force: :cascade do |t|
     t.integer "party_id", null: false
     t.integer "supply_id", null: false
-    t.index ["party_id", "supply_id"], name: "index_parties_supplies_on_party_id_and_supply_id"
-    t.index ["supply_id", "party_id"], name: "index_parties_supplies_on_supply_id_and_party_id"
+    t.index ["party_id", "supply_id"], name: "index_party_supplies_on_party_id_and_supply_id"
+    t.index ["supply_id", "party_id"], name: "index_party_supplies_on_supply_id_and_party_id"
   end
 
   create_table "supplies", force: :cascade do |t|

@@ -20,11 +20,23 @@
     <%= f.number_field :budget %>
   </p>
 
-  <p><%= f.collection_select :category_id, Category.all, :id, :name %></p>
+  <% if !params[:category_id] %>  
+    <p><%= f.collection_select :category_id, Category.all, :id, :name %></p>
 
-  <%= f.fields_for :category do |category_builder| %>
-    <%= category_builder.text_field :name %>
+    <%= f.fields_for :category do |category_builder| %>
+      <%= category_builder.text_field :name %>
+    <% end %>
+    <br><br>
+  <% else %>
+    <%= f.hidden_field :category_id %>
   <% end %>
+
+  <p>Supplies</p>
+  <%= f.fields_for :supplies do |supply_builder| %>
+    <%= supply_builder.label :name %>
+    <%= supply_builder.text_field :name %>
+  <% end %>
+
 
   <%= f.submit %>
 <%end%>

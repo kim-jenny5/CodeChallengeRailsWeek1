@@ -1,7 +1,12 @@
 class PartiesController < ApplicationController
 
     def index
-        @parties = Party.parties   
+        if params[:category_id]
+            @category = Category.find_by_id(params[:category_id])
+            @parties = @category.parties
+        else
+            @parties = Party.all
+        end
     end
 
     def show
@@ -9,8 +14,23 @@ class PartiesController < ApplicationController
     end
 
     def new
-        @party = Party.new
-        @party.build_category
+        # byebug
+
+        if params[:category_id]
+            @category = Category.find_by_id(params[:category_id])
+            @party = Party.new
+            @party.category_id = @category.id
+            @party.supplies.build            
+        else
+            @party = Party.new
+            @party.build_category
+            @party.supplies.build
+        end
+        # @party = Party.new
+        # @party.build_category
+        # # 3.times do
+        #     @party.supplies.build
+        # end
     end
 
     def create
@@ -41,7 +61,7 @@ class PartiesController < ApplicationController
     private
 
     def party_params
-        params.require(:party).permit(:name, :date, :budget, :category_id, category_attributes: [:name])
+        params.require(:party).permit(:name, :date, :budget, :category_id, category_attributes: [:name], supplies_attributes: [:name])
     end
 
 end
